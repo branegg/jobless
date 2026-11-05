@@ -1,0 +1,153 @@
+{
+ "jobs": [
+  {
+   "id": "3273dd8c-b333-4cf1-859a-431fba8e7f17",
+   "title": "Enterprise Customer Success Manager",
+   "location": "San Francisco",
+   "secondaryLocations": [],
+   "workplaceType": "Hybrid",
+   "isListed": true,
+   "isRemote": true,
+   "jobUrl": "https://jobs.ashbyhq.com/acme/3273dd8c-b333-4cf1-859a-431fba8e7f17",
+   "descriptionPlain": "Acme is hiring. Our mission is to make work simpler.",
+   "publishedAt": "2026-08-18T19:44:11.808+00:00",
+   "shouldDisplayCompensationOnJobPostings": true,
+   "compensation": {
+    "compensationTierSummary": "$160K – $200K • Offers Equity • Offers Commission",
+    "scrapeableCompensationSalarySummary": "$160K - $200K",
+    "compensationTiers": [
+     {
+      "id": "7ca9aaf3-3c1b-44de-846b-0b1d56ed654b",
+      "tierSummary": "$160K – $200K • Offers Equity • Offers Commission",
+      "title": "San Francisco",
+      "additionalInformation": null,
+      "components": [
+       {
+        "id": "6e7b8aec-6f60-4e43-bd3b-9d1c21c5eeb9",
+        "summary": "Offers Commission",
+        "compensationType": "Commission",
+        "interval": "1 YEAR",
+        "currencyCode": "USD",
+        "minValue": null,
+        "maxValue": null
+       },
+       {
+        "id": "e5a8b388-bdf8-4072-816a-b7064dc26012",
+        "summary": "$160K – $200K",
+        "compensationType": "Salary",
+        "interval": "1 YEAR",
+        "currencyCode": "USD",
+        "minValue": 160000,
+        "maxValue": 200000
+       },
+       {
+        "id": "24def6d6-237e-4c0a-86d6-ebaf659bf57f",
+        "summary": "Offers Equity",
+        "compensationType": "EquityPercentage",
+        "interval": "NONE",
+        "currencyCode": null,
+        "minValue": null,
+        "maxValue": null
+       }
+      ]
+     }
+    ],
+    "summaryComponents": [
+     {
+      "compensationType": "Commission",
+      "interval": "1 YEAR",
+      "currencyCode": "USD",
+      "minValue": null,
+      "maxValue": null
+     },
+     {
+      "compensationType": "Salary",
+      "interval": "1 YEAR",
+      "currencyCode": "USD",
+      "minValue": 160000,
+      "maxValue": 200000
+     },
+     {
+      "compensationType": "EquityPercentage",
+      "interval": "NONE",
+      "currencyCode": null,
+      "minValue": null,
+      "maxValue": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e05bfe26-0d8f-49b6-9253-9b67745afbe6",
+   "title": "Strategic Account Executive",
+   "location": "San Francisco",
+   "secondaryLocations": [
+    {
+     "location": "New York",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "New York",
+       "addressCountry": "United States",
+       "addressLocality": "New York"
+      }
+     }
+    }
+   ],
+   "workplaceType": "Hybrid",
+   "isListed": true,
+   "isRemote": true,
+   "jobUrl": "https://jobs.ashbyhq.com/acme/e05bfe26-0d8f-49b6-9253-9b67745afbe6",
+   "descriptionPlain": "Acme is hiring. Our mission is to make work simpler.",
+   "publishedAt": "2025-04-09T17:53:07.893+00:00",
+   "shouldDisplayCompensationOnJobPostings": true,
+   "compensation": {
+    "compensationTierSummary": "$350K – $400K • Offers Equity",
+    "scrapeableCompensationSalarySummary": "$350K - $400K",
+    "compensationTiers": [
+     {
+      "id": "3b0525a4-cc5c-4c0f-9ac4-12130b59686a",
+      "tierSummary": "$350K – $400K • Offers Equity",
+      "title": null,
+      "additionalInformation": null,
+      "components": [
+       {
+        "id": "031c9e1d-c14e-41cc-8aa0-7c15a2af792d",
+        "summary": "Offers Equity",
+        "compensationType": "EquityPercentage",
+        "interval": "NONE",
+        "currencyCode": null,
+        "minValue": null,
+        "maxValue": null
+       },
+       {
+        "id": "982715b8-01f2-4103-ac2a-a89a02484073",
+        "summary": "$350K – $400K",
+        "compensationType": "Salary",
+        "interval": "1 YEAR",
+        "currencyCode": "USD",
+        "minValue": 350000,
+        "maxValue": 400000
+       }
+      ]
+     }
+    ],
+    "summaryComponents": [
+     {
+      "compensationType": "EquityPercentage",
+      "interval": "NONE",
+      "currencyCode": null,
+      "minValue": null,
+      "maxValue": null
+     },
+     {
+      "compensationType": "Salary",
+      "interval": "1 YEAR",
+      "currencyCode": "USD",
+      "minValue": 350000,
+      "maxValue": 400000
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+[
+ {
+  "id": "27d0415e-b9fe-446f-bf45-aa95c660b0a8",
+  "text": "AI Deployment Strategist",
+  "hostedUrl": "https://jobs.lever.co/acme/27d0415e-b9fe-446f-bf45-aa95c660b0a8",
+  "createdAt": 1780928139723,
+  "categories": {
+   "commitment": "Full Time",
+   "department": "Professional Services",
+   "location": "New York",
+   "team": "Professional Services",
+   "allLocations": [
+    "New York",
+    "Austin, Texas",
+    "San Francisco",
+    "Toronto",
+    "United States"
+   ]
+  },
+  "workplaceType": "remote",
+  "descriptionPlain": "Acme is hiring. Our mission is to make work simpler.",
+  "additionalPlain": "Acme is hiring. Our mission is to make work simpler.",
+  "lists": []
+ },
+ {
+  "id": "6cbc9f93-5034-4838-84b0-13fbcd742163",
+  "text": "AI Deployment Strategist",
+  "hostedUrl": "https://jobs.lever.co/acme/6cbc9f93-5034-4838-84b0-13fbcd742163",
+  "createdAt": 1780316661939,
+  "categories": {
+   "commitment": "Full Time",
+   "department": "Professional Services",
+   "location": "London",
+   "team": "Professional Services",
+   "allLocations": [
+    "London"
+   ]
+  },
+  "workplaceType": "hybrid",
+  "descriptionPlain": "Acme is hiring. Our mission is to make work simpler.",
+  "additionalPlain": "Acme is hiring. Our mission is to make work simpler.",
+  "lists": []
+ }
+]

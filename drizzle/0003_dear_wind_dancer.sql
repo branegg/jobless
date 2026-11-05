@@ -1,0 +1,1 @@
+ALTER TABLE `jobs` ADD `preview_only` integer DEFAULT false NOT NULL;

@@ -1,0 +1,46 @@
+search:
+  titles:
+    - staff software engineer
+    - staff engineer
+    - senior software engineer
+    - senior engineer
+    - software engineer
+  excludeTitles:
+    - intern
+    - internship
+    - junior
+    - graduate
+    - recruiter
+    - sales
+    - account
+  places:
+    - london
+    - united kingdom
+    - uk
+    - europe
+    - worldwide
+    - anywhere
+  remoteElsewhere:
+    - us
+    - usa
+    - united states
+    - canada
+    - apac
+    - asia
+
+scoring:
+  dailyCap: 20
+  batchSize: 10
+
+boards:
+  places:
+    - London
+  minimumPay: 0
+  searches:
+    - senior software engineer
+
+companies:
+  - { name: Vercel, ats: greenhouse, token: vercel }
+  - { name: Intercom, ats: greenhouse, token: intercom }
+  - { name: incident.io, ats: ashby, token: incident }
+  - { name: Sonar, ats: lever, token: sonarsource }

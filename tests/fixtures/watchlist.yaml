@@ -1,0 +1,25 @@
+search:
+  titles:
+    - chief technology officer
+    - cto
+    - head of engineering
+    - forward deployed
+    - product engineer
+    - staff engineer
+    - senior software engineer
+  excludeTitles:
+    - intern
+    - recruiting
+    - sales
+    - account
+  places:
+    - london
+    - uk
+    - emea
+    - poland
+    - anywhere
+  remoteElsewhere:
+    - us
+    - usa
+    - united states
+    - canada

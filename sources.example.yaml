@@ -1,0 +1,6 @@
+cvFolders:
+  - ~/Documents/CVs
+projectFolders:
+  - ~/code
+exclude:
+  - Someone Else

@@ -1,0 +1,26 @@
+{
+ "jobs": [
+  {
+   "id": 7343996,
+   "title": "Android Engineer",
+   "absolute_url": "https://job-boards.greenhouse.io/acme/jobs/7343996",
+   "location": {
+    "name": "Barcelona"
+   },
+   "content": "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;&lt;strong&gt;Acme is on a mission to make work simpler.&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Build reliable systems&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;",
+   "first_published": "2025-10-21T08:12:57-04:00",
+   "updated_at": "2026-11-03T06:35:51-05:00"
+  },
+  {
+   "id": 6635595,
+   "title": "Backend Engineer III ",
+   "absolute_url": "https://job-boards.greenhouse.io/acme/jobs/6635595",
+   "location": {
+    "name": "Cardiff, London or Remote (UK)"
+   },
+   "content": "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;&lt;strong&gt;Acme is on a mission to make work simpler.&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Build reliable systems&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;",
+   "first_published": "2025-02-17T04:44:43-05:00",
+   "updated_at": "2026-11-03T06:35:51-05:00"
+  }
+ ]
+}

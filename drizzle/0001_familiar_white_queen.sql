@@ -1,0 +1,1 @@
+ALTER TABLE `jobs` ADD `pasted` integer DEFAULT false NOT NULL;
