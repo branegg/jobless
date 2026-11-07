@@ -6,7 +6,7 @@ import { buildPacketAction, fillInForm, moveApplication, undoMove, type FillStat
 import { canMove, hasBeenSent, isEndStage, nextStage, STAGE_LABELS, type Stage } from "@/lib/stages";
 import { keepFields } from "./keep-fields";
 
-type Props = { id: number; stage: Stage; hasPacket: boolean; hasDescription: boolean; hasLink: boolean; contactReady: boolean };
+type Props = { id: number; stage: Stage; hasPacket: boolean; hasDescription: boolean; url: string | null; contactReady: boolean; noFill?: boolean };
 
 function MoveButton({ id, to, primary = false }: { id: number; to: Stage; primary?: boolean }) {
   return (
@@ -17,7 +17,7 @@ function MoveButton({ id, to, primary = false }: { id: number; to: Stage; primar
   );
 }
 
-export function ApplicationActions({ id, stage, hasPacket, hasDescription, hasLink, contactReady }: Props) {
+export function ApplicationActions({ id, stage, hasPacket, hasDescription, url, contactReady, noFill = false }: Props) {
   const [packet, writeAction, writing] = useActionState<PacketState, FormData>(buildPacketAction.bind(null, id), {});
   const [fill, fillAction, opening] = useActionState<FillState, FormData>(fillInForm.bind(null, id), {});
 
@@ -30,7 +30,8 @@ export function ApplicationActions({ id, stage, hasPacket, hasDescription, hasLi
   }
 
   const sent = hasBeenSent(stage);
-  const canFill = hasPacket && hasLink;
+  const link = url && /^https?:\/\//i.test(url) ? url : null;
+  const canFill = hasPacket && Boolean(url) && !noFill;
   const next = nextStage(stage);
   return (
     <>
@@ -47,6 +48,7 @@ export function ApplicationActions({ id, stage, hasPacket, hasDescription, hasLi
             <button className="button button-primary" disabled={opening}>{opening ? "Opening Terminal…" : "Fill in the form"}</button>
           </form>
         )}
+        {!sent && link && <a className="button" href={link} target="_blank" rel="noreferrer">Open the form</a>}
         {hasPacket && <a className="button" href={`/applications/${id}/cv`} target="_blank" rel="noreferrer">Open CV</a>}
         {!sent && hasPacket && (
           <form onSubmit={keepFields(writeAction)}>

@@ -1,8 +1,8 @@
-import { and, desc, eq, notInArray } from "drizzle-orm";
+import { and, desc, eq, inArray, notInArray } from "drizzle-orm";
 import { z } from "zod";
 import type { Db } from "../../db";
 import { agentRuns, applications, companies, events, inboxFindings, jobs } from "../../db/schema";
-import { canMove, END_STAGES, type Stage } from "../stages";
+import { canMove, END_STAGES, isEndStage, type Stage } from "../stages";
 import { moveStage } from "../tracker";
 
 const DAY = 24 * 60 * 60 * 1000;
@@ -167,6 +167,34 @@ export function acceptFinding(db: Db, id: number): void {
   db.update(inboxFindings).set({ status: "applied" }).where(eq(inboxFindings.id, id)).run();
 }
 
+const REPLY_KINDS = ["screening", "interview", "offer"] as const;
+
+export function repliesToRead(db: Db) {
+  return findingsQuery(db)
+    .where(and(eq(inboxFindings.status, "applied"), eq(inboxFindings.suspicious, false), inArray(inboxFindings.kind, [...REPLY_KINDS])))
+    .orderBy(desc(inboxFindings.emailAt))
+    .all()
+    .filter((reply) => !isEndStage(reply.stage));
+}
+
+export function repliesFound(db: Db, limit = 5) {
+  return findingsQuery(db)
+    .where(and(inArray(inboxFindings.status, ["applied", "seen"]), eq(inboxFindings.suspicious, false), inArray(inboxFindings.kind, [...REPLY_KINDS])))
+    .orderBy(desc(inboxFindings.createdAt))
+    .limit(limit)
+    .all();
+}
+
+export function markReplySeen(db: Db, id: number): void {
+  db.update(inboxFindings).set({ status: "seen" }).where(and(eq(inboxFindings.id, id), eq(inboxFindings.status, "applied"))).run();
+}
+
+export function gmailSearchUrl(from: string, subject: string): string {
+  const address = from.match(/<([^>]+)>/)?.[1] ?? from;
+  const query = `from:${address} subject:"${subject.replaceAll('"', "")}"`;
+  return `https://mail.google.com/mail/u/0/#search/${encodeURIComponent(query)}`;
+}
+
 export function ignoreFinding(db: Db, id: number): void {
   db.update(inboxFindings).set({ status: "ignored" }).where(and(eq(inboxFindings.id, id), eq(inboxFindings.status, "pending"))).run();
 }
@@ -174,6 +202,8 @@ export function ignoreFinding(db: Db, id: number): void {
 const findingRow = {
   id: inboxFindings.id,
   applicationId: inboxFindings.applicationId,
+  stage: applications.stage,
+  createdAt: inboxFindings.createdAt,
   kind: inboxFindings.kind,
   proposedStage: inboxFindings.proposedStage,
   confidence: inboxFindings.confidence,

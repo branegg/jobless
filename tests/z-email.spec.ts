@@ -2,9 +2,9 @@ import path from "node:path";
 import { expect, test } from "@playwright/test";
 import { eq } from "drizzle-orm";
 import { openDb } from "../src/db";
-import { events } from "../src/db/schema";
+import { events, inboxFindings } from "../src/db/schema";
 import { applicationsToCheck, recordFindings } from "../src/lib/inbox/inbox";
-import { addApplication, recordFormStarted } from "../src/lib/tracker";
+import { addApplication, moveStage, recordFormStarted } from "../src/lib/tracker";
 
 test.describe.configure({ mode: "serial" });
 
@@ -29,7 +29,7 @@ function seed(company: string, messageId: string, extra = {}) {
 test("an update waits for your OK, shows plainly and moves the application when accepted", async ({ page }) => {
   seed("Email One", "m1");
   await page.goto("/");
-  await expect(page.getByRole("region", { name: "Email updates" }).getByRole("link")).toHaveText("1 update from your email needs your OK");
+  await expect(page.getByRole("region", { name: "Emails waiting for your OK: 1" }).getByRole("link", { name: "Email One" })).toHaveAttribute("href", "/email");
   await page.goto("/email");
   await expect(page.getByText("We received your <b>application</b>.")).toBeVisible();
   await expect(page.getByText("Every update waits for your OK.")).toBeVisible();
@@ -75,4 +75,22 @@ test("Today asks about a form started days ago with no email found", async ({ pa
   await expect(page.getByRole("region", { name: "Did you send these?" })).toHaveCount(0);
   await page.goto(`/applications/${id}`);
   await expect(page.locator(".head-meta .mark")).toHaveText("Submitted");
+});
+
+test("a company writing back leads the overview until you've dealt with it", async ({ page }) => {
+  const applicationId = withDb((db) => {
+    const added = addApplication(db, { company: "Reply Co", title: "Engineer", stage: "submitted" });
+    if (!added.ok) throw new Error("expected new");
+    moveStage(db, added.id, "screening");
+    db.insert(inboxFindings).values({ applicationId: added.id, messageId: "reply-1", kind: "screening", confidence: "high", emailAt: new Date(), fromAddress: "Mark <mark@reply.example>", subject: "Next steps", quote: "We would like to move you forward", status: "applied" }).run();
+    return added.id;
+  });
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1 }).getByRole("link", { name: /from Reply Co|new from Reply Co/ })).toHaveAttribute("href", `/applications/${applicationId}`);
+  const replies = page.getByRole("region", { name: /wrote back/ });
+  await expect(replies.getByText("We would like to move you forward")).toBeVisible();
+  await expect(replies.getByRole("link", { name: "Open in Gmail" })).toHaveAttribute("href", /^https:\/\/mail\.google\.com\/mail\/u\/0\/#search\//);
+  await replies.getByRole("button", { name: "I’ve dealt with this" }).click();
+  await expect(page.locator(".need", { hasText: "We would like to move you forward" })).toHaveCount(0);
+  await expect(page.locator(".feed").getByText("Reply Co: We would like to move you forward")).toBeVisible();
 });

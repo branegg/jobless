@@ -9,23 +9,24 @@ export function ScoreMark({ score }: { score: number | null }) {
 }
 
 export function JobRow({ job }: { job: Job }) {
+  const where = [job.location, job.compensation].filter(Boolean).join(". ");
   return (
-    <div className="row">
+    <div className="row row-compact">
       <div className="row-margin"><ScoreMark score={job.score} /></div>
       <div className="row-main">
         <Link className="row-title" href={`/jobs/${job.id}`}>{job.title} at {job.company}</Link>
-        {job.scoreReason && <p className="row-note">{job.scoreReason}</p>}
-        <p className="row-note">{[job.location, job.compensation].filter(Boolean).join(". ")}</p>
-        <div className="actions row-actions">
-          {job.status === "dismissed" ? (
-            <form action={restoreJobAction.bind(null, job.id)}><button className="button">Put back</button></form>
-          ) : (
-            <>
-              <form action={saveJobAction.bind(null, job.id)}><button className="button">Save to applications</button></form>
-              <form action={dismissJobAction.bind(null, job.id)}><button className="button button-quiet">Not for me</button></form>
-            </>
-          )}
-        </div>
+        {job.scoreReason && <p className="row-note row-clamp" title={job.scoreReason}>{job.scoreReason}</p>}
+      </div>
+      <p className="row-where" title={where}>{where}</p>
+      <div className="actions row-side">
+        {job.status === "dismissed" ? (
+          <form action={restoreJobAction.bind(null, job.id)}><button className="button">Put back</button></form>
+        ) : (
+          <>
+            <form action={saveJobAction.bind(null, job.id)}><button className="button" aria-label="Save to applications">Save</button></form>
+            <form action={dismissJobAction.bind(null, job.id)}><button className="button button-quiet">Not for me</button></form>
+          </>
+        )}
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export default async function ApplicationsPage() {
   const closed = all.filter((application) => isEndStage(application.stage));
   const contactReady = Boolean(readContact()?.confirmed);
   const actions = (application: Row) => (
-    <ApplicationActions id={application.id} stage={application.stage} hasPacket={Boolean(application.packetPath)} hasDescription={application.hasDescription} hasLink={Boolean(application.url)} contactReady={contactReady} />
+    <ApplicationActions id={application.id} stage={application.stage} hasPacket={Boolean(application.packetPath)} hasDescription={application.hasDescription} url={application.url} contactReady={contactReady} />
   );
   return (
     <>
@@ -33,6 +33,7 @@ export default async function ApplicationsPage() {
       </header>
 
       <AddApplication open={all.length === 0} today={toDayInput(now)} />
+
 
       {FURTHEST_FIRST.map((stage) => {
         const rows = all.filter((application) => application.stage === stage);

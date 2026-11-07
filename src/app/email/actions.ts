@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { getDb } from "@/db";
 import { checkEmail } from "@/lib/inbox/check";
-import { acceptFinding, ignoreFinding } from "@/lib/inbox/inbox";
+import { acceptFinding, ignoreFinding, markReplySeen } from "@/lib/inbox/inbox";
 import { canMove } from "@/lib/stages";
 import { readSettings, writeSettings } from "@/lib/settings";
 import { getApplication, moveStage, recordFormStarted } from "@/lib/tracker";
@@ -22,6 +22,11 @@ export async function acceptFindingAction(findingId: number) {
 
 export async function ignoreFindingAction(findingId: number) {
   ignoreFinding(getDb(), id.parse(findingId));
+  changed();
+}
+
+export async function markReplyRead(findingId: number) {
+  markReplySeen(getDb(), id.parse(findingId));
   changed();
 }
 

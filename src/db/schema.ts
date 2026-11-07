@@ -86,7 +86,7 @@ export const inboxFindings = sqliteTable(
     fromAddress: text("from_address").notNull(),
     subject: text("subject").notNull(),
     quote: text("quote").notNull(),
-    status: text("status", { enum: ["pending", "applied", "ignored", "no_change"] }).notNull().default("pending"),
+    status: text("status", { enum: ["pending", "applied", "ignored", "no_change", "seen"] }).notNull().default("pending"),
     createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
   },
   (t) => [uniqueIndex("inbox_message_application").on(t.messageId, t.applicationId), index("inbox_status").on(t.status)],

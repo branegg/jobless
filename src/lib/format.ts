@@ -21,6 +21,11 @@ export function formatWhen(date: Date): string {
   return date.toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
 }
 
+export function formatClock(date: Date, now: Date = new Date()): string {
+  const sameDay = date.toDateString() === now.toDateString();
+  return sameDay ? date.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) : date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+}
+
 export function formatDuration(start: Date, end: Date | null): string {
   if (!end) return "";
   const seconds = Math.max(0, Math.round((end.getTime() - start.getTime()) / 1000));

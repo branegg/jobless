@@ -10,7 +10,7 @@ import { STAGE_LABELS } from "@/lib/stages";
 
 export const metadata = { title: "Email check" };
 
-const STATUS_LABELS = { applied: "Applied", ignored: "Ignored", no_change: "Already up to date", pending: "Waiting" };
+const STATUS_LABELS = { applied: "Applied", ignored: "Ignored", no_change: "Already up to date", pending: "Waiting", seen: "Seen" };
 
 export default async function EmailPage() {
   await connection();
