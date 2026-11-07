@@ -60,6 +60,7 @@ pnpm schedule status                         # also: run daily, run inbox, unins
 | Setting | Meaning |
 |---|---|
 | `cvFolders` | Folders holding your CVs as PDFs |
+| `cvNames` | Optional. Parts of a file name that mark a CV, such as `CV`. When set, only matching `.pdf`, `.md` and `.txt` files directly in `cvFolders` can be read, so a CV folder can be one that holds other files too |
 | `projectFolders` | Folders whose subfolders are your projects |
 | `exclude` | Names of files or projects to block, such as someone else's CV |
 

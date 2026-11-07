@@ -1,5 +1,6 @@
 cvFolders:
   - ~/Documents/CVs
+cvNames: []
 projectFolders:
   - ~/code
 exclude:

@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import { describe, expect, it } from "vitest";
 import { buildArgs, buildEnv, checkTools, GMAIL_READ, otherServers, PROFILES, serversFromList, unexpectedToolUse } from "./profiles";
-import { parseSources, sourceRules } from "./sources";
+import { isCvName, parseSources, sourceRules } from "./sources";
 
 const flagValue = (args: string[], flag: string) => args[args.indexOf(flag) + 1];
 
@@ -138,6 +138,24 @@ describe("the folders profile-import may read", () => {
   it("expands the home folder and allows only what's named", () => {
     const rules = sourceRules(parseSources("cvFolders: [~/cvs]\nprojectFolders: [/work]", "/home/me"));
     expect(rules.allow).toEqual(["Read(//home/me/cvs/**)", "Read(//work/**)"]);
+  });
+  it("narrows a CV folder to files with a CV name, so the rest of it stays closed", () => {
+    const rules = sourceRules(parseSources("cvFolders: [~/Documents]\ncvNames: [CV, Resume]\nprojectFolders: [/work]", "/home/me"));
+    expect(rules.allow).toEqual([
+      "Read(//home/me/Documents/*CV*.pdf)",
+      "Read(//home/me/Documents/*CV*.md)",
+      "Read(//home/me/Documents/*CV*.txt)",
+      "Read(//home/me/Documents/*Resume*.pdf)",
+      "Read(//home/me/Documents/*Resume*.md)",
+      "Read(//home/me/Documents/*Resume*.txt)",
+      "Read(//work/**)",
+    ]);
+    expect(isCvName("CV Alex.pdf", { cvNames: ["CV"] })).toBe(true);
+    expect(isCvName("taxes.pdf", { cvNames: ["CV"] })).toBe(false);
+    expect(isCvName("taxes.pdf", { cvNames: [] })).toBe(true);
+  });
+  it("refuses a CV name that would widen what can be read", () => {
+    for (const name of ["*", "CV/**", "..", "[CV]", "C?", "{a,b}", "a\\b"]) expect(() => parseSources(`cvFolders: [~/Documents]\ncvNames: ["${name.replaceAll("\\", "\\\\")}"]`, "/home/me")).toThrow();
   });
   it("blocks excluded names in every folder it can read", () => {
     const rules = sourceRules(parseSources("cvFolders: [~/cvs]\nprojectFolders: [/work]\nexclude: [Someone Else]", "/home/me"));

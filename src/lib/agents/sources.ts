@@ -8,6 +8,7 @@ const absoluteFolders = z.array(z.string().refine((folder) => path.isAbsolute(fo
 
 const schema = z.object({
   cvFolders: absoluteFolders,
+  cvNames: z.array(z.string().min(1).refine((name) => !/[*?[\]{}!/\\]|\.\./.test(name), "must be plain text, with no * ? [ ] { } ! / \\ or ..")).default([]),
   projectFolders: absoluteFolders,
   exclude: z.array(z.string().min(1)).default([]),
 });
@@ -29,10 +30,17 @@ export function readSources(): Sources {
   return parseSources(fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "");
 }
 
+const CV_EXTENSIONS = ["pdf", "md", "txt"];
+
+export function isCvName(name: string, sources: Pick<Sources, "cvNames">): boolean {
+  return sources.cvNames.length === 0 || sources.cvNames.some((part) => name.includes(part));
+}
+
 export function sourceRules(sources: Sources): { allow: string[]; deny: string[] } {
   const folders = [...sources.cvFolders, ...sources.projectFolders];
+  const cvRules = sources.cvNames.length === 0 ? sources.cvFolders.map((folder) => `Read(/${folder}/**)`) : sources.cvFolders.flatMap((folder) => sources.cvNames.flatMap((name) => CV_EXTENSIONS.map((extension) => `Read(/${folder}/*${name}*.${extension})`)));
   return {
-    allow: folders.map((folder) => `Read(/${folder}/**)`),
+    allow: [...cvRules, ...sources.projectFolders.map((folder) => `Read(/${folder}/**)`)],
     deny: sources.exclude.flatMap((name) => folders.map((folder) => `Read(/${folder}/**/*${name}*)`)),
   };
 }

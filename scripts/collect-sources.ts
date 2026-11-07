@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { readSources } from "../src/lib/agents/sources";
+import { isCvName, readSources } from "../src/lib/agents/sources";
 
 const sources = readSources();
 
@@ -14,7 +14,7 @@ function run(command: string, args: string[], cwd?: string): string {
 }
 
 function listCvs(): string[] {
-  const found = sources.cvFolders.filter((folder) => fs.existsSync(folder)).flatMap((folder) => fs.readdirSync(folder).filter((name) => /\.pdf$/i.test(name)).map((name) => path.join(folder, name)));
+  const found = sources.cvFolders.filter((folder) => fs.existsSync(folder)).flatMap((folder) => fs.readdirSync(folder).filter((name) => /\.pdf$/i.test(name) && isCvName(name, sources)).map((name) => path.join(folder, name)));
   return found
     .filter((file) => !sources.exclude.some((excluded) => path.basename(file).includes(excluded)))
     .map((file) => ({ file, modified: fs.statSync(file).mtimeMs }))
