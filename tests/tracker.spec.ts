@@ -59,7 +59,9 @@ test("a next step that's due shows on Today and in the menu", async ({ page }) =
   await page.getByRole("link", { name: "Head of Engineering at Acme" }).click();
   await page.getByLabel("What needs doing").fill("Email the recruiter");
   await page.getByLabel("By when").fill("2020-01-15");
+  const saved = page.waitForResponse((response) => response.request().method() === "POST");
   await page.getByRole("button", { name: "Save next step" }).click();
+  await saved;
   await expect(page.getByRole("button", { name: "Clear next step" })).toBeVisible();
 
   await page.goto("/");
