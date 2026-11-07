@@ -58,7 +58,7 @@ export async function pasteJob(_previous: PasteState, form: FormData): Promise<P
     const listed = readWatchlist().companies.find((item) => item.ats === board.ats && item.token === board.token);
     jobId = addPastedBoardJob(db, { name: listed?.name ?? (company || nameFromToken(board.token)), ats: board.ats, token: board.token }, found).id;
   } else {
-    if (!company || !title) return { error: "Jobless doesn't read this site. Add the company and role, and paste the description so it can be scored." };
+    if (!company || !title) return { error: "Joblesss doesn't read this site. Add the company and role, and paste the description so it can be scored." };
     jobId = addPastedJob(db, { company, title, url: url.data, location: String(form.get("location") ?? ""), description: String(form.get("description") ?? "") }).id;
   }
   changed();

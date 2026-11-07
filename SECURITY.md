@@ -1,6 +1,6 @@
 # Security
 
-Jobless holds your career record and works in your browser and email, so please read this before you use it.
+Joblesss holds your career record and works in your browser and email, so please read this before you use it.
 
 ## What to know before using it
 

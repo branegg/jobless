@@ -2,8 +2,8 @@ import os from "node:os";
 import path from "node:path";
 import { defineConfig } from "@playwright/test";
 
-const stamp = process.env.JOBLESS_E2E_DIR ?? path.join(os.tmpdir(), `jobless-e2e-${Date.now()}`);
-process.env.JOBLESS_E2E_DIR = stamp;
+const stamp = process.env.JOBLESSS_E2E_DIR ?? path.join(os.tmpdir(), `joblesss-e2e-${Date.now()}`);
+process.env.JOBLESSS_E2E_DIR = stamp;
 
 export default defineConfig({
   testDir: "./tests",
@@ -14,6 +14,6 @@ export default defineConfig({
     url: "http://127.0.0.1:3100",
     reuseExistingServer: false,
     timeout: 120_000,
-    env: { JOBLESS_VAULT: path.join(stamp, "vault"), JOBLESS_DB: path.join(stamp, "test.db"), JOBLESS_CLAUDE_BIN: path.resolve("tests/fake-claude.sh"), JOBLESS_OSASCRIPT_BIN: path.resolve("tests/fake-osascript.sh"), JOBLESS_E2E_DIR: stamp },
+    env: { JOBLESSS_VAULT: path.join(stamp, "vault"), JOBLESSS_DB: path.join(stamp, "test.db"), JOBLESSS_CLAUDE_BIN: path.resolve("tests/fake-claude.sh"), JOBLESSS_OSASCRIPT_BIN: path.resolve("tests/fake-osascript.sh"), JOBLESSS_E2E_DIR: stamp },
   },
 });

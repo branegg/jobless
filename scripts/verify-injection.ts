@@ -2,8 +2,8 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-const dir = fs.mkdtempSync(path.join(os.tmpdir(), "jobless-injection-"));
-process.env.JOBLESS_DB = path.join(dir, "test.db");
+const dir = fs.mkdtempSync(path.join(os.tmpdir(), "joblesss-injection-"));
+process.env.JOBLESSS_DB = path.join(dir, "test.db");
 const CANARY = path.join(dir, "pwned.txt");
 
 const PLANTED = `We need a Head of Engineering in London.

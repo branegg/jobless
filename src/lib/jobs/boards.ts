@@ -19,7 +19,7 @@ const ADZUNA_PER_PAGE = 50;
 const ANNUAL_PAY_FROM = 10_000;
 const ADZUNA_MAX_DAYS_OLD = 30;
 
-const USER_AGENT = "jobless-personal-job-search";
+const USER_AGENT = "joblesss-personal-job-search";
 
 function pay(min: number | null | undefined, max: number | null | undefined, currency = "£"): string | null {
   if (!min && !max) return null;

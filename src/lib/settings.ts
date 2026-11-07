@@ -4,7 +4,7 @@ import path from "node:path";
 export type Settings = { inboxAutoApply: boolean };
 
 function settingsPath(): string {
-  const database = process.env.JOBLESS_DB ?? path.join(process.cwd(), "data", "jobless.db");
+  const database = process.env.JOBLESSS_DB ?? path.join(process.cwd(), "data", "joblesss.db");
   return path.join(path.dirname(database), "settings.json");
 }
 

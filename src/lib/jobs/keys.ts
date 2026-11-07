@@ -6,7 +6,7 @@ export type BoardKeys = { reedKey?: string; adzunaId?: string; adzunaKey?: strin
 const NAMES: Record<keyof BoardKeys, string> = { reedKey: "REED_API_KEY", adzunaId: "ADZUNA_APP_ID", adzunaKey: "ADZUNA_APP_KEY" };
 
 function keysPath(): string {
-  const database = process.env.JOBLESS_DB ?? path.join(process.cwd(), "data", "jobless.db");
+  const database = process.env.JOBLESSS_DB ?? path.join(process.cwd(), "data", "joblesss.db");
   return path.join(path.dirname(database), ".env.boards");
 }
 

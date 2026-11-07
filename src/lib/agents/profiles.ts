@@ -167,7 +167,7 @@ export function buildArgs(profile: AgentProfile, options: BuildOptions = {}): st
   const interactive = options.interactive ?? profile.interactive ?? false;
   const args = [
     "--model",
-    process.env.JOBLESS_MODEL ?? profile.model,
+    process.env.JOBLESSS_MODEL ?? profile.model,
     "--setting-sources",
     profile.gmail ? "user,project" : "project",
     "--permission-mode",

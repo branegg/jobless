@@ -7,7 +7,7 @@ type Job = { label: string; script: string[]; log: string; timing: string; summa
 
 const JOBS: Record<string, Job> = {
   daily: {
-    label: "com.jobless.daily",
+    label: "com.joblesss.daily",
     script: ["scripts/jobs.ts", "daily"],
     log: "daily.log",
     timing: `<key>StartCalendarInterval</key>
@@ -20,7 +20,7 @@ const JOBS: Record<string, Job> = {
     summary: "Jobs are checked and scored daily at 8:30, or when the Mac next wakes.",
   },
   inbox: {
-    label: "com.jobless.inbox",
+    label: "com.joblesss.inbox",
     script: ["scripts/inbox.ts"],
     log: "inbox.log",
     timing: `<key>StartInterval</key>

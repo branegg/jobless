@@ -1,4 +1,4 @@
-# Jobless
+# Joblesss
 
 A job search app that runs on your own Mac. It keeps your career record as Markdown files, reads job feeds, scores what it finds, drafts a CV and cover note for each role from claims you've confirmed, and fills in application forms while you watch.
 

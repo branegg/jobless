@@ -25,7 +25,7 @@ export function parseSources(text: string, home: string = os.homedir()): Sources
 }
 
 export function readSources(): Sources {
-  const file = process.env.JOBLESS_SOURCES ?? path.join(process.cwd(), "sources.yaml");
+  const file = process.env.JOBLESSS_SOURCES ?? path.join(process.cwd(), "sources.yaml");
   return parseSources(fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "");
 }
 

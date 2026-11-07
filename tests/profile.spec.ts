@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { expect, test } from "@playwright/test";
 
-const vault = path.join(process.env.JOBLESS_E2E_DIR!, "vault");
+const vault = path.join(process.env.JOBLESSS_E2E_DIR!, "vault");
 
 function seed(relative: string, text: string) {
   const file = path.join(vault, relative);

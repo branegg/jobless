@@ -4,7 +4,7 @@ import { expect, test } from "@playwright/test";
 
 test.describe.configure({ mode: "serial" });
 
-const vault = path.join(process.env.JOBLESS_E2E_DIR!, "vault");
+const vault = path.join(process.env.JOBLESSS_E2E_DIR!, "vault");
 
 test("a packet needs contact details first, then builds a checked CV", async ({ page, request }) => {
   fs.mkdirSync(path.join(vault, "facts"), { recursive: true });
@@ -54,7 +54,7 @@ test("a packet needs contact details first, then builds a checked CV", async ({ 
 
   await page.getByRole("button", { name: "Fill in the form" }).click();
   await expect(page.getByText("Opened in Terminal.")).toBeVisible();
-  const script = fs.readFileSync(path.join(process.env.JOBLESS_E2E_DIR!, "osascript.txt"), "utf8");
+  const script = fs.readFileSync(path.join(process.env.JOBLESSS_E2E_DIR!, "osascript.txt"), "utf8");
   const applicationId = url.split("/").pop();
   expect(script).toContain(`pnpm agent apply ${applicationId}`);
   expect(script).toContain(`cd '${process.cwd()}'`);
@@ -65,7 +65,7 @@ test("a packet needs contact details first, then builds a checked CV", async ({ 
   expect((await pdf.body()).subarray(0, 4).toString()).toBe("%PDF");
   await page.getByRole("button", { name: "Make these sound more like me" }).click();
   await expect(page.getByText("Opened in Terminal. When it's done")).toBeVisible();
-  expect(fs.readFileSync(path.join(process.env.JOBLESS_E2E_DIR!, "osascript.txt"), "utf8")).toContain("pnpm agent voice");
+  expect(fs.readFileSync(path.join(process.env.JOBLESSS_E2E_DIR!, "osascript.txt"), "utf8")).toContain("pnpm agent voice");
 
   fs.mkdirSync(path.join(vault, "stories"), { recursive: true });
   fs.writeFileSync(path.join(vault, "stories", "my-voice.md"), "---\ntitle: How I talk\nstatus: confirmed\nvisibility: public\nsource: told by me\n---\nI just want a job really.");
@@ -101,7 +101,7 @@ test("the applications list can run an application from start to finish", async 
 
   await row.getByRole("button", { name: "Fill in the form" }).click();
   await expect(row.getByText("Opened in Terminal.")).toBeVisible();
-  expect(fs.readFileSync(path.join(process.env.JOBLESS_E2E_DIR!, "osascript.txt"), "utf8")).toContain(`pnpm agent apply ${id}`);
+  expect(fs.readFileSync(path.join(process.env.JOBLESSS_E2E_DIR!, "osascript.txt"), "utf8")).toContain(`pnpm agent apply ${id}`);
 
   await row.getByRole("button", { name: "Mark as submitted" }).click();
   await expect(page.getByRole("region", { name: "Submitted" }).getByRole("link", { name: "Head of Platform at List Co" })).toBeVisible();

@@ -12,7 +12,7 @@ const display = Besley({ variable: "--font-display", subsets: ["latin", "latin-e
 const body = Instrument_Sans({ variable: "--font-body", subsets: ["latin", "latin-ext"] });
 
 export const metadata: Metadata = {
-  title: "Jobless",
+  title: "Joblesss",
   description: "My private job search and career record",
   robots: { index: false, follow: false },
 };
@@ -28,7 +28,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <div className="shell">
           <aside className="rail">
             <div className="rail-inner">
-              <Link href="/" className="brand">Jobless</Link>
+              <Link href="/" className="brand">Joblesss</Link>
               <nav aria-label="Main">
                 <Link href="/">Today</Link>
                 <Link href="/jobs">Jobs</Link>

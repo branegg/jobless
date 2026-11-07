@@ -9,7 +9,7 @@ import { addApplication, recordFormStarted } from "../src/lib/tracker";
 test.describe.configure({ mode: "serial" });
 
 function withDb<T>(work: (db: ReturnType<typeof openDb>["db"]) => T): T {
-  const { db, sqlite } = openDb(path.join(process.env.JOBLESS_E2E_DIR!, "test.db"));
+  const { db, sqlite } = openDb(path.join(process.env.JOBLESSS_E2E_DIR!, "test.db"));
   try {
     return work(db);
   } finally {

@@ -7,7 +7,7 @@ import { jobs } from "../src/db/schema";
 test.describe.configure({ mode: "serial" });
 
 function score(title: string, value: number, reason: string) {
-  const { db, sqlite } = openDb(path.join(process.env.JOBLESS_E2E_DIR!, "test.db"));
+  const { db, sqlite } = openDb(path.join(process.env.JOBLESSS_E2E_DIR!, "test.db"));
   db.update(jobs).set({ score: value, scoreReason: reason, scoredAt: new Date() }).where(eq(jobs.title, title)).run();
   sqlite.close();
 }
@@ -34,7 +34,7 @@ test("LinkedIn links aren't read, so it asks for the details and keeps what you 
   await page.getByText("Add a job from a link").click();
   await page.getByLabel("Link to the job").fill("https://www.linkedin.com/jobs/view/123");
   await page.getByRole("button", { name: "Add job" }).click();
-  await expect(page.locator("p.error")).toContainText("Jobless doesn't read this site.");
+  await expect(page.locator("p.error")).toContainText("Joblesss doesn't read this site.");
   await expect(page.getByLabel("Link to the job")).toHaveValue("https://www.linkedin.com/jobs/view/123");
 });
 

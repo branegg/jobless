@@ -381,16 +381,16 @@ describe("job boards", () => {
   });
   it("keeps keys in a private file and merges changes", () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), "keys-"));
-    const before = process.env.JOBLESS_DB;
-    process.env.JOBLESS_DB = path.join(dir, "x.db");
+    const before = process.env.JOBLESSS_DB;
+    process.env.JOBLESSS_DB = path.join(dir, "x.db");
     try {
       saveBoardKeys({ reedKey: "abc=def" });
       saveBoardKeys({ adzunaId: "id", adzunaKey: "key" });
       expect(readBoardKeys()).toEqual({ reedKey: "abc=def", adzunaId: "id", adzunaKey: "key" });
       expect(fs.statSync(path.join(dir, ".env.boards")).mode & 0o777).toBe(0o600);
     } finally {
-      process.env.JOBLESS_DB = before;
-      if (before === undefined) delete process.env.JOBLESS_DB;
+      process.env.JOBLESSS_DB = before;
+      if (before === undefined) delete process.env.JOBLESSS_DB;
       fs.rmSync(dir, { recursive: true });
     }
   });

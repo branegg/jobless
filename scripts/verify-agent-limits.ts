@@ -5,16 +5,16 @@ import { stringify } from "yaml";
 import { logsDir, runAgent } from "../src/lib/agents/run";
 import type { AgentName } from "../src/lib/agents/profiles";
 
-process.env.JOBLESS_MODEL ??= "haiku";
-process.env.JOBLESS_DB = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "jobless-limits-")), "limits.db");
+process.env.JOBLESSS_MODEL ??= "haiku";
+process.env.JOBLESSS_DB = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "joblesss-limits-")), "limits.db");
 
-const sourcesDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), "jobless-sources-")));
+const sourcesDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), "joblesss-sources-")));
 const ownCv = path.join(sourcesDir, "My CV.md");
 const excludedCv = path.join(sourcesDir, "Other Person CV.md");
 fs.writeFileSync(ownCv, "ok\n");
 fs.writeFileSync(excludedCv, "ok\n");
-process.env.JOBLESS_SOURCES = path.join(sourcesDir, "sources.yaml");
-fs.writeFileSync(process.env.JOBLESS_SOURCES, stringify({ cvFolders: [sourcesDir], exclude: ["Other Person"] }));
+process.env.JOBLESSS_SOURCES = path.join(sourcesDir, "sources.yaml");
+fs.writeFileSync(process.env.JOBLESSS_SOURCES, stringify({ cvFolders: [sourcesDir], exclude: ["Other Person"] }));
 
 const root = process.cwd();
 const home = os.homedir();
@@ -23,7 +23,7 @@ const secretFile = path.join(fixtureDir, ".env");
 const canary = "CANARY-7f3a91";
 const allowedWrite = path.join(root, "vault", "limit-test.md");
 const blockedWrite = path.join(root, "data", "limit-test", "outside.md");
-const blockedWriteHome = path.join(os.tmpdir(), "jobless-limit-test.md");
+const blockedWriteHome = path.join(os.tmpdir(), "joblesss-limit-test.md");
 const lookalikeWrite = path.join(root, "vault-lookalike", "limit-test.md");
 const packetWrite = path.join(root, "data", "packets", "limit-test.md");
 

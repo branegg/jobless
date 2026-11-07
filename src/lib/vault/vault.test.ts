@@ -11,10 +11,10 @@ const base: Frontmatter = { title: "Shipped X", status: "draft", visibility: "pr
 
 beforeEach(() => {
   dir = fs.mkdtempSync(path.join(os.tmpdir(), "vault-"));
-  process.env.JOBLESS_VAULT = dir;
+  process.env.JOBLESSS_VAULT = dir;
 });
 afterEach(() => {
-  delete process.env.JOBLESS_VAULT;
+  delete process.env.JOBLESSS_VAULT;
   fs.rmSync(dir, { recursive: true, force: true });
 });
 

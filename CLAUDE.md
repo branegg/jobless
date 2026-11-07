@@ -1,6 +1,6 @@
 @AGENTS.md
 
-# Jobless
+# Joblesss
 
 A local job search app. Each copy belongs to one person, called "the person" below. Nothing is hosted. The dashboard binds to 127.0.0.1 only, and `src/proxy.ts` refuses requests naming any other host.
 

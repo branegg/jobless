@@ -35,7 +35,7 @@ export type Entry = Frontmatter & { kind: Kind; slug: string; body: string; upda
 export type VaultProblem = { file: string; reason: string };
 
 export function vaultDir(): string {
-  return process.env.JOBLESS_VAULT ?? path.join(process.cwd(), "vault");
+  return process.env.JOBLESSS_VAULT ?? path.join(process.cwd(), "vault");
 }
 
 export function isKind(value: string): value is Kind {

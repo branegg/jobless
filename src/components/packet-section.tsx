@@ -78,7 +78,7 @@ export function PacketSection({ applicationId, packet, hasDescription, hasLink, 
           {hasLink && (
             <div className="packet-part">
               <h3>Fill in the form</h3>
-              <p className="packet-text">Jobless opens a Terminal window and fills in the form in your Chrome, stopping before Submit. Talk to it in that window, check every field, and press Submit yourself.</p>
+              <p className="packet-text">Joblesss opens a Terminal window and fills in the form in your Chrome, stopping before Submit. Talk to it in that window, check every field, and press Submit yourself.</p>
               <form onSubmit={keepFields(fillAction)} className="check-form fill-form">
                 <button className="button button-primary" disabled={opening}>{opening ? "Opening Terminal…" : "Fill in the form"}</button>
                 {fill.opened && <p className="row-note" role="status">Opened in Terminal.</p>}

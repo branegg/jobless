@@ -240,7 +240,7 @@ export const PARSERS: Record<Ats, (data: unknown) => FeedJob[]> = { greenhouse: 
 export type Fetcher = (url: string, init?: RequestInit) => Promise<Pick<Response, "ok" | "status" | "json">>;
 
 async function getJson(url: string, fetcher: Fetcher): Promise<unknown> {
-  const response = await fetcher(url, { headers: { "User-Agent": "jobless-personal-job-search" }, signal: AbortSignal.timeout(30_000) });
+  const response = await fetcher(url, { headers: { "User-Agent": "joblesss-personal-job-search" }, signal: AbortSignal.timeout(30_000) });
   if (!response.ok) throw new Error(`${url} answered ${response.status}`);
   return response.json();
 }

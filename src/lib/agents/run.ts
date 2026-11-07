@@ -19,7 +19,7 @@ export type RunResult = {
 };
 
 export function logsDir(): string {
-  const database = process.env.JOBLESS_DB ?? path.join(process.cwd(), "data", "jobless.db");
+  const database = process.env.JOBLESSS_DB ?? path.join(process.cwd(), "data", "joblesss.db");
   return path.join(path.dirname(database), "logs");
 }
 
@@ -29,7 +29,7 @@ function skillFile(agent: AgentName): string | undefined {
 }
 
 function claudeBinary(): string {
-  return process.env.JOBLESS_CLAUDE_BIN ?? "claude";
+  return process.env.JOBLESSS_CLAUDE_BIN ?? "claude";
 }
 
 function configuredServers(env: NodeJS.ProcessEnv): Promise<string[]> {

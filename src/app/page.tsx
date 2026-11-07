@@ -40,7 +40,7 @@ function NextStep({ hasPreferences, entries, due, open }: { hasPreferences: bool
   if (!hasPreferences) {
     return (
       <div className="next-step">
-        <h1>Tell Jobless what you&apos;re looking for.</h1>
+        <h1>Tell Joblesss what you&apos;re looking for.</h1>
         <p>A five-minute interview about roles, location, pay and dealbreakers. Job scoring uses your answers. Run this in your terminal, in this project&apos;s folder:</p>
         <code className="command">pnpm agent setup</code>
       </div>

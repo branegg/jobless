@@ -20,7 +20,7 @@ export default async function JobSourcesPage() {
     <>
       <header className="page-head">
         <h1>Job sources</h1>
-        <p className="lede">Where Jobless looks for jobs each morning. Keys stay on this Mac and are only sent to the board they belong to.</p>
+        <p className="lede">Where Joblesss looks for jobs each morning. Keys stay on this Mac and are only sent to the board they belong to.</p>
       </header>
 
       <section className="section" aria-labelledby="companies-heading">

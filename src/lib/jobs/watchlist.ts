@@ -21,7 +21,7 @@ export function parseWatchlist(text: string): Watchlist {
 }
 
 function watchlistFile(): string {
-  if (process.env.JOBLESS_WATCHLIST) return process.env.JOBLESS_WATCHLIST;
+  if (process.env.JOBLESSS_WATCHLIST) return process.env.JOBLESSS_WATCHLIST;
   const own = path.join(process.cwd(), "watchlist.yaml");
   return fs.existsSync(own) ? own : path.join(process.cwd(), "watchlist.example.yaml");
 }

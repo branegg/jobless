@@ -24,7 +24,7 @@ export default async function EmailPage() {
       <header className="page-head">
         <h1>Email check</h1>
         <p className="lede">
-          Jobless searches your Gmail for news about your open applications. It can only search and read, so it can&apos;t send, delete or change anything. {checked ? `Last checked ${formatWhen(checked)}.` : "It hasn't checked yet."}
+          Joblesss searches your Gmail for news about your open applications. It can only search and read, so it can&apos;t send, delete or change anything. {checked ? `Last checked ${formatWhen(checked)}.` : "It hasn't checked yet."}
         </p>
       </header>
 
@@ -50,7 +50,7 @@ export default async function EmailPage() {
                 <p className="row-note">{finding.fromAddress}: {finding.subject}</p>
                 <p className="timeline-note">&ldquo;{finding.quote}&rdquo;</p>
                 {finding.suspicious && <p className="due-late">This email contains text aimed at AI tools, which was ignored. Check it yourself.</p>}
-                {finding.confidence === "low" && <p className="row-note">Jobless isn&apos;t sure about this one.</p>}
+                {finding.confidence === "low" && <p className="row-note">Joblesss isn&apos;t sure about this one.</p>}
                 <div className="actions row-actions">
                   <form action={acceptFindingAction.bind(null, finding.id)}>
                     <button className="button">{finding.proposedStage ? `Move to ${STAGE_LABELS[finding.proposedStage]}` : "Add to timeline"}</button>

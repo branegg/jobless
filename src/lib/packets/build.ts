@@ -14,7 +14,7 @@ export type Packet = VerifiedPacket & { contact: Contact; cvFile: string; builtA
 export type BuildResult = { ok: true; packet: Packet } | { ok: false; error: string };
 
 export function packetsDir(): string {
-  const database = process.env.JOBLESS_DB ?? path.join(process.cwd(), "data", "jobless.db");
+  const database = process.env.JOBLESSS_DB ?? path.join(process.cwd(), "data", "joblesss.db");
   return path.join(path.dirname(database), "packets");
 }
 

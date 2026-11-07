@@ -18,11 +18,11 @@ export function openDb(file: string): { db: Db; sqlite: Database.Database } {
   return { db, sqlite };
 }
 
-const holder = globalThis as unknown as { joblessDb?: { db: Db; sqlite: Database.Database } };
+const holder = globalThis as unknown as { joblesssDb?: { db: Db; sqlite: Database.Database } };
 
 export function getConnection() {
-  holder.joblessDb ??= openDb(process.env.JOBLESS_DB ?? path.join(process.cwd(), "data", "jobless.db"));
-  return holder.joblessDb;
+  holder.joblesssDb ??= openDb(process.env.JOBLESSS_DB ?? path.join(process.cwd(), "data", "joblesss.db"));
+  return holder.joblesssDb;
 }
 
 export function getDb(): Db {
